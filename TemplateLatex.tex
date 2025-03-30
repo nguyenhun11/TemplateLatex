@@ -1,0 +1,72 @@
+\documentclass[12pt]{extarticle}
+\usepackage[utf8]{vietnam}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{fancyhdr} % Gói tạo header/footer
+\usepackage{graphicx} % Gói chèn hình ảnh
+\usepackage[a4paper,top=2cm,bottom=2.5cm,left=2cm,right=2cm]{geometry} % Tùy chỉnh lề
+\pagestyle{fancy}% Kích hoạt fancyhdr
+\fancyhead{}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0pt} %Loại bỏ gạch chân của header
+\setlength{\parindent}{1cm} %thụt lề
+\setlength{\parskip}{0.5cm}
+\usepackage{indentfirst}
+\usepackage{amsmath} %Toán
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\makeatother
+\renewcommand{\familydefault}{\sfdefault} %Đặt font
+\theoremstyle{definition}
+\newtheorem{cau}{Câu}
+\usepackage{enumitem}
+\newenvironment{muc}
+  {\begin{enumerate}[label=\alph*)]} 
+  {\end{enumerate}} 
+\usepackage{enumitem} %không thụt lề
+\newenvironment{tracnghiema}
+    {\begin{enumerate}[label=\textbf{\Alph*.}]}
+    {\end{enumerate}}
+\newenvironment{tracnghiem}[1]
+    {\begin{multicols}{#1}\begin{enumerate}[label=\textbf{\Alph*.}]}
+    {\end{enumerate}\end{multicols}}
+\usepackage{multicol}
+\usepackage{titling}
+\usepackage{titlesec} % Gói để chỉnh section
+\usepackage{lipsum}   % Gói để tạo văn bản giả lập
+\renewcommand{\maketitle}{
+    \vspace*{1cm}
+    \begin{center} % Căn giữa
+        {\Huge \MakeUppercase{\textbf{\thetitle}}} % Tiêu đề rất lớn, in đậm
+    \end{center}
+    \vspace{0.5cm}
+}
+% Căn phải tiêu đề section và thêm gạch dưới
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}. }
+\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
+\newcommand{\sectionunderline}{%
+    \vspace{-0.75cm} % Khoảng cách trước gạch ngang
+    \noindent\rule{\textwidth}{0.4pt} % Gạch ngang dưới tiêu đề
+    \vspace{0.5cm} % Khoảng cách sau gạch ngang
+}
+\titleformat{\section}
+  {\LARGE\bfseries\raggedleft} % Font lớn, đậm, căn phải
+  {}
+  {0 cm} % Không có khoảng cách giữa số và tiêu đề
+  {\MakeUppercase} % Chuyển tiêu đề thành in hoa
+  [\sectionunderline] % Gọi lệnh gạch ngang sau tiêu đề
+
+\titleformat{\subsection}
+  {\centering\Large\bfseries} % Căn giữa, chữ lớn, đậm
+  {\thesubsection} % Hiển thị số
+  {00cm} % Khoảng cách giữa số và tiêu đề
+  {\MakeUppercase} % Chuyển tiêu đề thành chữ IN HOA
+\titlespacing{\subsection}{0pt}{0.5cm}{-0cm}
+\titleformat{\subsubsection}
+  {\large\bfseries} % Chữ lớn, in đậm
+  {\thesubsubsection} % Hiển thị số (1.1.1, 1.1.2, ...)
+  {0.5cm} % Khoảng cách giữa số và tiêu đề
+  {} % Không thay đổi nội dung (giữ nguyên chữ thường)
+% Tùy chỉnh khoảng cách trước và sau subsubsection
+\titlespacing{\subsubsection}{0pt}{0.25cm}{-0cm} 
