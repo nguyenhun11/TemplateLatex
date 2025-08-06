@@ -1,90 +1,146 @@
+%===CHUNG
 \documentclass[12pt]{extarticle}
 \usepackage[utf8]{vietnam}
 \usepackage[colorlinks=true, allcolors=black]{hyperref}
-\usepackage{fancyhdr} % Gói tạo header/footer
+\renewcommand{\familydefault}{\sfdefault} %Đặt font
 \usepackage{graphicx} % Gói chèn hình ảnh
-\usepackage[a4paper, top=2cm, bottom=2.5cm, left=2cm, right=2cm]{
-  geometry
-} % Tùy chỉnh lề
+
+%===LỀ, ĐOẠN
+\usepackage[a4paper, top=2cm, bottom=2.5cm, left=2cm, right=2cm]{geometry} % Tùy chỉnh lề
+\setlength{\parskip}{0cm}
+\setlength{\parindent}{1cm} %thụt lề
+\usepackage{indentfirst}
+
+%===HEADER, FOOTER
+\usepackage{fancyhdr} % Gói tạo header/footer
 \pagestyle{fancy}% Kích hoạt fancyhdr
 \fancyhead{}
 \fancyfoot[c]{\thepage}
 \renewcommand{\headrulewidth}{0pt} %Loại bỏ gạch chân của header
-\setlength{\parindent}{1cm} %thụt lề
-\setlength{\parskip}{0cm}
-\usepackage{indentfirst}
+
+%===TOÁN
 \usepackage{amsmath} %Toán
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{siunitx}
-\makeatother
-\renewcommand{\familydefault}{\sfdefault} %Đặt font
-\theoremstyle{definition}
-\newtheorem{cau}{Câu}
-\usepackage{enumitem}
-\newenvironment{muc}{\begin{enumerate}[label=\alph{*})]}{\end{enumerate}}
-\usepackage{enumitem} %không thụt lề
-\newenvironment{tracnghiema}{\begin{enumerate}[label=\textbf{\Alph{*}.}]}{\end{enumerate}}
-\newenvironment{tracnghiem}[1]{\begin{multicols}{#1}\begin{enumerate}[label=\textbf{\Alph{*}.}]}{\end{enumerate}\end{multicols}}
-\usepackage{multicol}
-\usepackage{titling}
-\usepackage{titlesec} % Gói để chỉnh section
-\usepackage{lipsum} % Gói để tạo văn bản giả lập
-\renewcommand{\maketitle}{
-\vspace*{1cm}
-\begin{center} % Căn giữa
-  {\Huge \MakeUppercase{\textbf{\thetitle}}} % Tiêu đề rất lớn, in đậm
-\end{center}
-\vspace{0.5cm}
-}
-% Căn phải tiêu đề section và thêm gạch dưới
-\renewcommand{\thesection}{\Roman{section}}
-\renewcommand{\thesubsection}{\arabic{subsection}. }
-\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
-\newcommand{\sectionunderline}{%
-\vspace{-0.75cm} % Khoảng cách trước gạch ngang
-\noindent
-\rule{\textwidth}{0.4pt} % Gạch ngang dưới tiêu đề
-\vspace{0.5cm} % Khoảng cách sau gạch ngang
-}
-\titleformat{\section}
-{\LARGE\bfseries\raggedleft} % Font lớn, đậm, căn phải
-{}
-{0 cm} % Không có khoảng cách giữa số và tiêu đề
-{\MakeUppercase} % Chuyển tiêu đề thành in hoa
-[\sectionunderline] % Gọi lệnh gạch ngang sau tiêu đề
-
-\titleformat{\subsection}
-{\centering\Large\bfseries} % Căn giữa, chữ lớn, đậm
-{\thesubsection} % Hiển thị số
-{00cm} % Khoảng cách giữa số và tiêu đề
-{\MakeUppercase} % Chuyển tiêu đề thành chữ IN HOA
-\titlespacing{\subsection}{0pt}{0.5cm}{-0cm}
-\titleformat{\subsubsection}
-{\large\bfseries} % Chữ lớn, in đậm
-{\thesubsubsection} % Hiển thị số (1.1.1, 1.1.2, ...)
-{0.5cm} % Khoảng cách giữa số và tiêu đề
-{} % Không thay đổi nội dung (giữ nguyên chữ thường)
-% Tùy chỉnh khoảng cách trước và sau subsubsection
-\titlespacing{\subsubsection}{0pt}{0.25cm}{-0cm}
-\theoremstyle{definition}
-\newtheorem{dinhnghia}{Định nghĩa}
-\usepackage{environ}
-\NewEnviron{note}{%
-  \begin{flushright}
-    \colorbox{gray!15}{%
-      \begin{minipage}{\dimexpr\linewidth - 3cm\relax}
-        %\color{gray}
-        \setlength{\parindent}{2em}
-        \setlength{\parskip}{0.5cm}
-        \BODY % nội dung người dùng viết trong môi trường
-      \end{minipage}
-    }
-  \end{flushright}
-}
-\everymath{\displaystyle}
+\everymath{\displaystyle} %Luôn ở dạng displaystyle
+\usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{mathrsfs}
 \usetikzlibrary{arrows}
 \usetikzlibrary{angles,quotes}
-\DeclareMathOperator{\lcm}{lcm}
+
+%===MÔI TRƯỜNG MỚI====
+\usepackage{environ} % Gói định nghĩa lại môi trường
+\usepackage{multicol} %Gói chia cột
+\usepackage{enumitem} %Định nghĩa môi trường mục
+\usepackage{changepage} %chỉnh lề
+\theoremstyle{definition} %Tạo môi trường mới
+
+%---Định nghĩa
+\newtheorem{dinhnghia}{Định nghĩa}
+
+%---Câu hỏi
+\newtheorem{cau}{Câu} %Môi trường câu hỏi
+
+%---Mục a), b)
+\newenvironment{muc} %Môi trường mục a), b)
+    {\begin{enumerate}[label=\alph*)]} 
+    {\end{enumerate}} 
+
+%---Mục 1.1, 1.2
+\newlist{MUC}{enumerate}{1}
+\setlist[MUC,1]{label=\thecau.\arabic*, ref=\thecau.\arabic*.}
+
+%---Trắc nghiệm
+\NewEnviron{tracnghiem}[1]{%
+    \ifthenelse{\equal{#1}{1}}{%
+        \begin{enumerate}[label=\textbf{\Alph*.}]
+            \BODY
+        \end{enumerate}
+    }{%
+        \begin{multicols}{#1}
+            \begin{enumerate}[label=\textbf{\Alph*.}]
+                \BODY
+        \end{enumerate}
+        \end{multicols}
+    }%
+}
+%---Trắc nghiệm a (các tài liệu cữ)
+\newenvironment{tracnghiema}{\begin{enumerate}[label=\textbf{\Alph{*}.}]}{\end{enumerate}}
+
+%---Ghi chú
+\NewEnviron{note}{%
+    \begin{flushright}
+        \colorbox{gray!15}{% màu xám
+        \begin{minipage}{\dimexpr\linewidth -3cm\relax} %Chỉnh độ thụt của khung
+            %\color{gray} % Màu chữ, bỏ comment nếu muốn chữ màu xám
+            \setlength{\parindent}{0cm} %Thụt lề đầu dòng
+            \setlength{\parskip}{0cm} %Cách đoạn
+            \BODY % nội dung người dùng viết trong môi trường
+        \end{minipage}
+        }
+    \end{flushright}
+}
+
+%===THIẾT LẬP LẠI CÁC PHẦN
+\usepackage{titling}
+\usepackage{titlesec} % Gói để chỉnh section
+\usepackage{lipsum} % Gói để tạo văn bản giả lập
+
+%---Tiêu đề
+\renewcommand{\maketitle}{
+    \vspace*{1cm}
+    \begin{center} % Căn giữa
+        {\Huge \MakeUppercase{\textbf{\thetitle}}} % Tiêu đề rất lớn, in đậm
+    \end{center}
+    \vspace{0.5cm}
+}
+
+%---Section
+\renewcommand{\thesection}{\Roman{section}}
+\newcommand{\sectionunderline}{%
+    \vspace{-0.75cm} % Khoảng cách trước gạch ngang
+    \noindent
+    \rule{\textwidth}{0.4pt} % Gạch ngang dưới tiêu đề
+    \vspace{0.5cm} % Khoảng cách sau gạch ngang
+}
+
+\titleformat{\section}
+    {\LARGE\bfseries\raggedleft} % Font lớn, đậm, căn phải
+    {}
+    {0 cm} % Không có khoảng cách giữa số và tiêu đề
+    {\MakeUppercase} % Chuyển tiêu đề thành in hoa
+    [\sectionunderline] % Gọi lệnh gạch ngang sau tiêu đề
+
+%---Subsection
+\renewcommand{\thesubsection}{\arabic{subsection}. }
+\titleformat{\subsection}
+    {\centering\Large\bfseries} % Căn giữa, chữ lớn, đậm
+    {\thesubsection} % Hiển thị số
+    {00cm} % Khoảng cách giữa số và tiêu đề
+    {\MakeUppercase} % Chuyển tiêu đề thành chữ IN HOA
+    
+\titlespacing{\subsection}{0pt}{0.5cm}{-0cm}
+
+%---Subsubsection
+\renewcommand{\thesubsubsection}{\arabic{subsection}.\arabic{subsubsection}}
+\titleformat{\subsubsection}
+    {\large\bfseries} % Chữ lớn, in đậm
+    {\thesubsubsection} % Hiển thị số (1.1.1, 1.1.2, ...)
+    {0.5cm} % Khoảng cách giữa số và tiêu đề
+    {} % Không thay đổi nội dung (giữ nguyên chữ thường)
+\titlespacing{\subsubsection}{0pt}{0.25cm}{-0cm}
+
+
+%===CÁC LỆNH MỚI====
+
+%---Kẻ n dòng chấm \dotsline{n}
+\newcommand{\dotsline}[1]{%
+    \par
+    \vspace{1em}
+    \noindent
+    \foreach \i in {1,...,#1}{%
+        \mbox{}\dotfill\\[1em]%
+    }%
+}
